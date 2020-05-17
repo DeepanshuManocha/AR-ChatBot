@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputData: []
   reply: []
-  inputDataInputField: {fileID: 1362013953}
-  replyInputField: {fileID: 484065842}
+  dataInputField: {fileID: 1362013955}
+  replyInputField: {fileID: 484065844}
 --- !u!1 &646433435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,7 +1795,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 886428853}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 0.9999997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3350,7 +3350,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1904006042
 MonoBehaviour:

@@ -8,28 +8,79 @@ public class ReceiveResult : MonoBehaviour {
     public List<string> inputData = new List<string>();
     public List<string> reply = new List<string>();
     
-    public GameObject inputDataInputField, replyInputField;
-    int i;
-	// Use this for initialization
-	void Start () 
+    public InputField dataInputField, replyInputField;
+    private int i, savedInputCount,savedReplyCount;
+
+    private void Awake()
     {
-        //GameObject.Find("Text").GetComponent<Text>().text = "You need to be connected to Internet";
-        //inputData.Add("hi");
-        //inputData.Add("how are you");
-        //inputData.Add(inputDataText);
-        //reply.Add("hi deepanshu");
-        //reply.Add("I am fine,thankyou!");
-        //reply.Add(replyText);
-	}
+        //PlayerPrefs.DeleteAll();
+        LoadReplyData();
+        LoadInputData();
+    }
+
+    public void SaveInputData()
+    {
+        for (int i = 0; i < inputData.Count;i++)
+        {
+            PlayerPrefs.SetString("InputData" + i, inputData[i]);
+        }
+        PlayerPrefs.SetInt("InputCount", inputData.Count);
+    }
+    public void LoadInputData()
+    {
+        inputData.Clear();
+        savedInputCount = PlayerPrefs.GetInt("InputCount");
+        for (int i = 0; i < savedInputCount; i++)
+        {
+            string input = PlayerPrefs.GetString("InputData" + i);
+            inputData.Add(input);
+        }
+
+    }
+
+    public void SaveReplyData()
+    {
+        for (int i = 0; i < reply.Count; i++)
+        {
+            PlayerPrefs.SetString("ReplyData" + i, reply[i]);
+        }
+        PlayerPrefs.SetInt("ReplyCount", reply.Count);
+    }
+    public void LoadReplyData()
+    {
+        reply.Clear();
+        savedReplyCount = PlayerPrefs.GetInt("ReplyCount");
+        for (int i = 0; i < savedReplyCount; i++)
+        {
+            string replyData = PlayerPrefs.GetString("ReplyData" + i);
+            reply.Add(replyData);
+        }
+    }
+
 
     public void EnterInputData()
     {
-        inputData.Add(inputDataInputField.GetComponent<InputField>().text);
+        if(dataInputField.text != null)
+        {
+            if (!inputData.Contains(dataInputField.text))
+            {
+                inputData.Add(dataInputField.text);
+                SaveInputData();
+            }
+        }
     }
 
     public void EnterReply()
     {
-        reply.Add(replyInputField.GetComponent<InputField>().text);
+        if (replyInputField.text != null)
+        {
+            if (!reply.Contains(replyInputField.text))
+            {
+                reply.Add(replyInputField.text);
+                SaveReplyData();
+            }
+        }
+        
     }
 	
     public void onActivityResult(string recognizedText){
@@ -46,9 +97,7 @@ public class ReceiveResult : MonoBehaviour {
             if(result[0]==inputData[i])
             {
                 GameObject.Find("TTS").GetComponent<TextToSpeech>().inputText=reply[i];
-            }
-            
-        
+            }        
         }
         //i=0;
     }
