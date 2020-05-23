@@ -60,7 +60,7 @@ public class ReceiveResult : MonoBehaviour {
 
     public void EnterInputData()
     {
-        if(dataInputField.text != null)
+        if(dataInputField.text != "")
         {
             if (!inputData.Contains(dataInputField.text))
             {
@@ -72,7 +72,7 @@ public class ReceiveResult : MonoBehaviour {
 
     public void EnterReply()
     {
-        if (replyInputField.text != null)
+        if (replyInputField.text != "")
         {
             if (!reply.Contains(replyInputField.text))
             {
